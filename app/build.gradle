@@ -1,0 +1,188 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
+android {
+  compileSdkVersion Versions.androidCompileSdk
+
+  defaultConfig {
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+    versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
+    minSdkVersion Versions.androidMinSdk
+    targetSdkVersion Versions.androidTargetSdk
+    testInstrumentationRunner "com.denwehrle.boilerplate.util.helper.TestRunner"
+    multiDexEnabled = true
+
+    // export the room schema, so we can use it for testing
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+      }
+    }
+  }
+
+  signingConfigs {
+    release {
+      storeFile file('keystore/release.keystore')
+      keyAlias "$System.env.KEY_ALIAS"
+      storePassword "$System.env.STORE_PASSWORD"
+      keyPassword "$System.env.KEY_PASSWORD"
+    }
+
+    debug {
+      storeFile file('keystore/debug.keystore')
+      keyAlias 'androiddebugkey'
+      storePassword 'android'
+      keyPassword 'android'
+    }
+  }
+
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release
+      minifyEnabled false
+      shrinkResources false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), file('proguard-rules.pro')
+    }
+
+    debug {
+      signingConfig signingConfigs.debug
+      versionNameSuffix " Debug"
+      testCoverageEnabled true
+      debuggable true
+    }
+  }
+
+  dexOptions {
+    preDexLibraries = false
+    dexInProcess = false
+    javaMaxHeapSize "4g"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  packagingOptions {
+    exclude 'LICENSE.txt'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/ASL2.0'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+  }
+
+  // change default directory path to use kotlin folders
+  sourceSets {
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+
+    def commonTestDir = 'src/commonTest/kotlin'
+    test {
+      java.srcDir commonTestDir
+    }
+    androidTest {
+      java.srcDir commonTestDir
+    }
+  }
+
+  lintOptions {
+    quiet true
+    abortOnError false
+    ignoreWarnings true
+  }
+}
+
+kapt {
+  generateStubs = true
+  correctErrorTypes = true
+}
+
+dependencies {
+
+  // App dependencies
+  implementation AppDependencies.androidSupportAnnotations
+  implementation AppDependencies.androidSupportAppCompatV7
+  implementation AppDependencies.androidSupportConstraintLayout
+  implementation AppDependencies.androidSupportDesign
+  implementation AppDependencies.androidSupportRecyclerView
+  implementation AppDependencies.androidSupportV13
+
+  implementation AppDependencies.dagger
+  implementation AppDependencies.daggerSupport
+  implementation AppDependencies.glide
+  implementation AppDependencies.gson
+  implementation AppDependencies.javaxAnnotation
+  implementation AppDependencies.javaxInject
+  implementation AppDependencies.kotlin
+  implementation AppDependencies.okHttp
+  implementation AppDependencies.okHttpLogger
+  implementation AppDependencies.retrofit
+  implementation AppDependencies.retrofitAdapter
+  implementation AppDependencies.retrofitConverter
+  implementation AppDependencies.roomRuntime
+  implementation AppDependencies.roomRxJava
+  implementation AppDependencies.rxAndroid
+  implementation AppDependencies.rxJava
+  implementation AppDependencies.rxKotlin
+  implementation AppDependencies.stetho
+  implementation AppDependencies.timber
+  implementation AppDependencies.pageindicatorview
+  implementation AppDependencies.moshi
+  implementation AppDependencies.lifecycle
+
+  implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+  debugImplementation AppDependencies.leakCanaryDebug
+  releaseImplementation AppDependencies.leakCanaryRelease
+
+  kapt AppDependencies.roomCompiler
+  kapt AppDependencies.daggerCompiler
+  kapt AppDependencies.daggerProcessor
+  kapt AppDependencies.lifecycleCompiler
+
+  compileOnly AppDependencies.glassfishAnnotation
+
+  // Instrumentation test dependencies
+  androidTestImplementation TestDependencies.dexopener
+  androidTestImplementation TestDependencies.junit
+  androidTestImplementation TestDependencies.mockitoKotlin
+  androidTestImplementation TestDependencies.dexmakerMockito
+  androidTestImplementation(TestDependencies.espressoCore) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(TestDependencies.androidRunner) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(TestDependencies.androidRules) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(TestDependencies.espressoIntents) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(TestDependencies.espressoContrib) {
+    exclude module: 'appcompat'
+    exclude module: 'appcompat-v7'
+    exclude module: 'support-v4'
+    exclude module: 'support-v13'
+    exclude module: 'support-annotations'
+    exclude module: 'recyclerview-v7'
+    exclude module: 'design'
+  }
+  kaptAndroidTest AppDependencies.daggerCompiler
+
+  // Unit test dependencies
+  testImplementation TestDependencies.junit
+  testImplementation TestDependencies.kotlinJUnit
+  testImplementation TestDependencies.mockitoKotlin
+  testImplementation TestDependencies.assertj
+  testImplementation TestDependencies.robolectric
+  testImplementation TestDependencies.roomTesting
+
+  kaptTest AppDependencies.daggerCompiler
+}
