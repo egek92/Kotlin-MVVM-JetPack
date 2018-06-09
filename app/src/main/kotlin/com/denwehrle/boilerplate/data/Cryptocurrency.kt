@@ -1,11 +1,16 @@
-package com.denwehrle.boilerplate.di.data
+package com.denwehrle.boilerplate.data
 
+import android.arch.persistence.room.Entity
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 /**
  * Created by Ege Kuzubasioglu on 9.06.2018 at 23:50.
  * Copyright (c) 2018. All rights reserved.
  */
+@Entity(
+    tableName = "cryptocurrency"
+)
 data class Cryptocurrency(
 
     @Json(name = "price_usd")
@@ -52,4 +57,4 @@ data class Cryptocurrency(
 
     @Json(name = "percent_change_7d")
     val percentChange7d: String? = null
-)
+): Serializable

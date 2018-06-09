@@ -1,4 +1,4 @@
-package com.denwehrle.boilerplate.di.data
+package com.denwehrle.boilerplate.data
 
 /**
  * Created by Ege Kuzubasioglu on 9.06.2018 at 23:49.

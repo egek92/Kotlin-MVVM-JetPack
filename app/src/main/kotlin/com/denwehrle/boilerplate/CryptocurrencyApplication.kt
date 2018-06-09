@@ -9,9 +9,9 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 /**
- * @author Dennis Wehrle
+ * Created by Ege Kuzubasioglu on 10.06.2018 at 00:06.
+ * Copyright (c) 2018. All rights reserved.
  */
-
 class CryptocurrencyApplication : Application(), HasActivityInjector {
   @Inject
   lateinit var activityInjector: DispatchingAndroidInjector<Activity>
