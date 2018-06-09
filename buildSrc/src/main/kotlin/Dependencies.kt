@@ -90,6 +90,7 @@ object AppDependencies {
     const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val lifecycle = "android.arch.lifecycle:extensions:${Versions.lifecycle}"
     const val lifecycleCompiler = "android.arch.lifecycle:compiler:${Versions.lifecycleCompiler}"
+    const val moshiConverter = "com.squareup.retrofit2:converter-moshi:2.0.0-beta3"
 }
 
 @Suppress("unused")

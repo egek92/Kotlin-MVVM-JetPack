@@ -136,6 +136,7 @@ dependencies {
   implementation AppDependencies.pageindicatorview
   implementation AppDependencies.moshi
   implementation AppDependencies.lifecycle
+  implementation AppDependencies.moshiConverter
 
   implementation 'com.android.support.constraint:constraint-layout:1.1.1'
   debugImplementation AppDependencies.leakCanaryDebug
