@@ -55,6 +55,12 @@ android {
       versionNameSuffix " Debug"
       testCoverageEnabled true
       debuggable true
+      buildConfigField 'String', 'URL', '"https://api.coinmarketcap.com/v1/"'
+    }
+    release {
+      buildConfigField 'String', 'URL', '"https://api.coinmarketcap.com/v1/"'
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
 
