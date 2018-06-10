@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.denwehrle.boilerplate">
+    package="us.egek.mvvm">
 
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -17,7 +17,7 @@
   <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
 
   <application
-      android:name=".CryptocurrencyApplication"
+      android:name="us.egek92.mvvm.App"
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
@@ -26,7 +26,7 @@
       android:theme="@style/AppTheme">
 
     <!-- Activities -->
-    <activity android:name=".ui.CryptocurrenciesActivity">
+    <activity android:name="us.egek92.mvvm.ui.CryptoCurrencyActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
