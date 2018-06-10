@@ -39,6 +39,8 @@ This project follows Android architecture guidelines that are based on MVVM.
 
 ![Architecture Diagram](images/architecture_diagram.png)
 
+## Code Analysis by Cloc
+
 ```
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
@@ -50,6 +52,10 @@ SUM:                            35            151             85            790
 -------------------------------------------------------------------------------
 
 ```
+
+## Method Count by ClassyShark
+
+![Method Count](images/method_count.png)
 
 
 ## License
