@@ -1,12 +1,9 @@
-[![Build Status](https://travis-ci.org/denwehrle/boilerplate-kotlin.svg?branch=master)](https://travis-ci.org/denwehrle/boilerplate-kotlin)
 
-# Boilerplate Kotlin
+# MVVM + LiveData + Room
 
 Languages, libraries and tools used
 
 - [Kotlin](https://kotlinlang.org/)
-- Support libraries
-- RecyclerViews and CardViews 
 - [RxJava](https://github.com/ReactiveX/RxJava) and [RxAndroid](https://github.com/ReactiveX/RxAndroid) 
 - Dependency Injection with [Dagger 2](http://google.github.io/dagger/)
 - [Room](https://developer.android.com/topic/libraries/architecture/room.html) Persistence Library
@@ -18,17 +15,14 @@ Languages, libraries and tools used
 - [Robolectric](http://robolectric.org/)
 - [Mockito](http://mockito.org/)
 - [DexOpener](https://github.com/tmurakami/dexopener)
+- [Detekt](https://arturbosch.github.io/detekt/) Static Code Analyzer
+- [Moshi](https://github.com/square/moshi) JSON Serialization
 
 
 ## Features
 
-* Welcome Screens with ViewPager
-* Login Screen with Account + Sync
-* Offline first approach with cache logic
-* RecyclerView with dummy data from RestAPI
-* Detail Screens with additional data
-* Background sync + Notifications
-* Homescreen Widget
+* Displays CryptoCurrency stats using [CoinMarketCap API](https://coinmarketcap.com/api/) with offline first approach.
+See [Carlos Daniel's article](https://medium.com/@cdmunoz/offline-first-android-app-with-mvvm-dagger2-rxjava-livedata-and-room-25de4e1ada14) for more details.
 
 ## Requirements
 
@@ -41,48 +35,15 @@ Languages, libraries and tools used
 
 ## Architecture
 
-This project follows Android architecture guidelines that are based on [MVP (Model View Presenter)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter).
+This project follows Android architecture guidelines that are based on MVVM.
 
 ![Architecture Diagram](images/architecture_diagram.png)
-
-### How to implement a new screen following MVP
-
-Imagine you have to implement a sign in screen. 
-
-1. Create a new package under `ui` called `signin`
-2. Create an new Activity called `ActivitySignIn`. You could also use a Fragment.
-3. Define the view interface that your Activity is going to implement. Create a new interface called `SignInMvpView` that extends `MvpView`. Add the methods that you think will be necessary, e.g. `showSignInSuccessful()`
-4. Create a `SignInPresenter` class that extends `BasePresenter<SignInMvpView>`
-5. Implement the methods in `SignInPresenter` that your Activity requires to perform the necessary actions, e.g. `signIn(String email)`. Once the sign in action finishes you should call `getMvpView().showSignInSuccessful()`.
-6. Create a `SignInPresenterTest`and write unit tests for `signIn(email)`. Remember to mock the  `SignInMvpView` and also the `DataManager`.
-7. Make your  `ActivitySignIn` implement `SignInMvpView` and implement the required methods like `showSignInSuccessful()`
-8. In your activity, inject a new instance of `SignInPresenter` and call `presenter.attachView(this)` from `onCreate` and `presenter.detachView()` from `onDestroy()`. Also, set up a click listener in your button that calls `presenter.signIn(email)`.
-
-## Code Quality
-
-This project integrates a combination of unit and functional tests. 
-
-### Tests
-
-To run **unit** tests on your machine:
-
-``` 
-./gradlew test
-``` 
-
-To run **functional** tests on connected devices:
-
-``` 
-./gradlew connectedAndroidTest
-``` 
-
-Note: For Android Studio to use syntax highlighting for Automated tests and Unit tests you **must** switch the Build Variant to the desired mode.
 
 
 ## License
 
 ```
-    Copyright 2018 Dennis Wehrle
+    Copyright 2018 Ege Kuzubasioglu
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
