@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <dimen name="text_name_size">22sp</dimen>
+  <dimen name="text_size">12sp</dimen>
   <dimen name="default_8dp">8dp</dimen>
 </resources>
 

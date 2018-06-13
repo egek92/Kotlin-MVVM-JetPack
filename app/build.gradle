@@ -119,6 +119,7 @@ dependencies {
   implementation AppDependencies.androidSupportDesign
   implementation AppDependencies.androidSupportRecyclerView
   implementation AppDependencies.androidSupportV13
+  implementation AppDependencies.androidSupportCardView
 
   implementation AppDependencies.dagger
   implementation AppDependencies.daggerSupport

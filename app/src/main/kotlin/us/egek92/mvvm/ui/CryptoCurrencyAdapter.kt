@@ -47,9 +47,11 @@ class CryptoCurrencyAdapter(
   class CryptocurrencieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private var cryptocurrencyId = itemView.findViewById<TextView>(R.id.cryptocurrency_id)!!
+    private var cryptocurrencyRate = itemView.findViewById<TextView>(R.id.cryptocurrency_rate)!!
 
     fun cryptocurrencyListItem(cryptoCurrencyItem: CryptoCurrency) {
       cryptocurrencyId.text = cryptoCurrencyItem.id
+      cryptocurrencyRate.text = cryptoCurrencyItem.priceBtc
     }
   }
 }

@@ -18,12 +18,21 @@
         android:id="@+id/cryptocurrency_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_margin="@dimen/default_8dp"
         android:text="@string/cryptocurrency_text"
         android:textSize="@dimen/text_name_size"
-        android:textStyle="italic"
         android:textColor="@color/colorAccent"
+        />
+    <TextView
+        android:id="@+id/cryptocurrency_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/default_8dp"
+        android:text="@string/cryptocurrency_text"
+        android:textSize="@dimen/text_size"
+        android:layout_toEndOf="@+id/cryptocurrency_id"
+        android:layout_toRightOf="@+id/cryptocurrency_id"
         />
 
   </RelativeLayout>

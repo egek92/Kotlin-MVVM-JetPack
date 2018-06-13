@@ -61,6 +61,7 @@ object AppDependencies {
     const val androidSupportDesign = "com.android.support:design:${Versions.supportLibrary}"
     const val androidSupportRecyclerView = "com.android.support:recyclerview-v7:${Versions.supportLibrary}"
     const val androidSupportV13 = "com.android.support:support-v13:${Versions.supportLibrary}"
+    const val androidSupportCardView = "com.android.support:cardview-v7:${Versions.supportLibrary}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
@@ -91,6 +92,7 @@ object AppDependencies {
     const val lifecycle = "android.arch.lifecycle:extensions:${Versions.lifecycle}"
     const val lifecycleCompiler = "android.arch.lifecycle:compiler:${Versions.lifecycleCompiler}"
     const val moshiConverter = "com.squareup.retrofit2:converter-moshi:2.0.0-beta3"
+
 }
 
 @Suppress("unused")
