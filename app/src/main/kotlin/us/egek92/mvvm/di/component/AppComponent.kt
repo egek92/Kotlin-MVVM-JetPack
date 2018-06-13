@@ -1,6 +1,6 @@
 package us.egek92.mvvm.di.component
 
-import android.app.Application
+import us.egek92.mvvm.App
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import us.egek92.mvvm.di.module.AppModule
@@ -18,5 +18,5 @@ import javax.inject.Singleton
     modules = [(AndroidInjectionModule::class), (BuildersModule::class), (AppModule::class), (NetModule::class)]
 )
 interface AppComponent {
-  fun inject(app: Application)
+  fun inject(app: App)
 }
