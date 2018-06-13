@@ -5,10 +5,12 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.MoshiConverterFactory
 import retrofit2.Retrofit
 import retrofit2.Retrofit.Builder
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import timber.log.Timber
 import us.egek92.mvvm.data.remote.ApiInterface
 import javax.inject.Singleton
 
@@ -22,7 +24,18 @@ class NetModule(private val baseUrl: String) {
 
   @Provides
   @Singleton
-  fun providesOkHttpClient(): OkHttpClient = OkHttpClient.Builder().build()
+  fun providesOkHttpClient(
+      httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient.Builder().addInterceptor(
+      httpLoggingInterceptor).build()
+
+  @Provides
+  @Singleton
+  fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+    val interceptor = HttpLoggingInterceptor(
+        HttpLoggingInterceptor.Logger { message -> Timber.tag("NETWORK: ").i(message) })
+    interceptor.level = HttpLoggingInterceptor.Level.BASIC
+    return interceptor
+  }
 
   @Provides
   @Singleton
