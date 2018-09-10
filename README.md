@@ -24,6 +24,8 @@ Languages, libraries and tools used
 * Displays CryptoCurrency stats using [CoinMarketCap API](https://coinmarketcap.com/api/) with offline first approach.
 See [Carlos Daniel's article](https://medium.com/@cdmunoz/offline-first-android-app-with-mvvm-dagger2-rxjava-livedata-and-room-25de4e1ada14) for more details.
 
+[TO-DO: DiffUtils]
+
 ## Requirements
 
 - JDK 1.8
